@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div class="header">
+    <div class="title">
+      <p>Transcription</p>
+    </div>
+    <mat-tab-group dynamicHeight>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <i class="bi bi-file-earmark-play-fill"></i>
+          &nbsp; Audio File To Text
+        </ng-template>
+        <div class="audio-file-to-text-container">
+          <form class="audioFileToText">
+            <input #upload type="file" (change)="onFileSelected($event)">
+            <div class="upload-container" (click)="upload.click()">
+              <i class="bi bi-upload"></i>
+              <span *ngIf="selectedFile == undefined">
+                Upload
+              </span>
+              <span *ngIf="selectedFile != undefined" class="upload">
+                {{selectedFileName}}
+              </span>
+            </div>
+            <div class="action-btn">
+              <button mat-raised-button (click)="onUpload()" [disabled]="selectedFile == undefined">
+                <i class="bi bi-arrow-repeat"></i>
+                Convert
+              </button>
+              <button *ngIf="serviceRunning" mat-raised-button (click)="stopService()">
+                <i [style.color]="serviceRunning ? 'red' : 'black'" class="bi bi-stop-circle"></i>
+                Stop Speech To Text
+              </button>
+              <button *ngIf="text.trim().length > 0" mat-raised-button (click)="text = ''">
+                <i class="bi bi-trash3"></i>
+                Reset
+              </button>
+              <div *ngIf="processing" class="loader-container">
+                <img class="loader" src="assets/spinner.svg"> &nbsp; Processing...
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <i class="bi bi-volume-up-fill"></i>
+          &nbsp; Speech To Text
+        </ng-template>
+        <div class="speech-to-text-container">
+          <div class="speechToText">
+            <div class="action-btn">
+              <button mat-raised-button (click)="startService()" [disabled]="serviceRunning">
+                <i class="bi bi-play-circle"></i>
+                Start
+              </button>
+              <button mat-raised-button (click)="stopService()" [disabled]="!serviceRunning">
+                <i [style.color]="serviceRunning ? 'red' : 'black'" class="bi bi-stop-circle"></i>
+                Stop
+              </button>
+              <button *ngIf="text.trim().length > 0" mat-raised-button (click)="text = ''">
+                <i class="bi bi-trash3"></i>
+                Reset
+              </button>
+              <div *ngIf="processing" class="loader-container">
+                <img class="loader" src="assets/spinner.svg"> &nbsp; Processing...
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="content">
+    <div class="action">
+      <div class="mat-select">
+        <mat-form-field>
+          <mat-select id="id" (selectionChange)="onSelectionChange($event)" [value]="selectedLanguage">
+            <mat-option *ngFor="let lan of languages" [value]="lan.Code">
+              {{lan.LanguageName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="data">
+      <p>{{text}}</p>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+body {
+    display: flex;
+    flex-flow: column;
+}
+
+.content{
+    position: relative;
+    width: calc(100% - 85px);
+    margin-top: -10px;
+    padding: 0px 30px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.title p{
+    margin: 0px;
+    font-size: 30px;
+    background: #9595950a;
+    padding: 15px 40px;
+    border-radius: 50px;
+}
+
+.loader{
+    width: 25px;
+}
+
+.loader-container{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.bi-volume-up-fill{
+    font-size: 22px;
+}
+
+.bi-file-earmark-play-fill{
+    font-size: 18px;
+}
+
+.speech-to-text-container,
+.audio-file-to-text-container{
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    margin-left: 300px;
+    min-height: 60px;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+input[type="file" i] {
+    display: none;
+}
+
+.upload-container{
+    height: 100%;
+    border-radius: 10px;
+    border: 1px dotted black;
+    padding: 10px;
+    cursor: copy;
+}
+
+.speechToText{
+    display: flex;
+    gap: 38px;
+    align-items: center;
+}
+
+.action-btn{
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn button{
+    border-radius: 50px;
+}
+
+.data{
+    width: 100%;
+    min-height: 300px;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e5e5e5;
+}
+
+.action{
+    position: absolute;
+    width: 100px;
+    top: -72px;
+    background: white;
+    margin-left: -30px;
+    z-index: 1;
+}
+
+.mat-select{
+    margin-left: 30px;
+}
+
+.data p{
+    margin: 0px;
+}
